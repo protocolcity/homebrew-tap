@@ -13,7 +13,7 @@
 class Protocolcity < Formula
   include Language::Python::Virtualenv
 
-  desc "ProtocolCity BluePrint — found a city, serve Map · Desk · Roster"
+  desc "BluePrint suite — found a city, serve Map · Desk · Roster"
   homepage "https://github.com/protocolcity/ProtocolCity-BluePrint"
   url "https://files.pythonhosted.org/packages/c4/9b/c64cb50bfc8e8e7a8828e735cdfb4530dd11d6c172aa62c3b97a0da3729d/protocolcity-0.1.0.tar.gz"
   sha256 "81494abb2b2bd9ae8751935e427ed2934c28cb4bf5f0404e5d6b4f72a7b3775f"
