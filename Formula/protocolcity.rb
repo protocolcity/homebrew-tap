@@ -2,12 +2,16 @@
 # frozen_string_literal: true
 
 # Formula for protocolcity/homebrew-tap (pc-260).
-# Digests from PyPI 0.1.0. One formula = full suite (CLI + engine resources).
+# Digests from PyPI. One formula = full suite (CLI + engine resources).
 #
 # Install (preferred one-liner):
 #   brew install protocolcity/tap/protocolcity
 #   protocolcity found ~/my-city
 #   protocolcity serve --with-engines
+#
+# Upgrade after Formula bump:
+#   brew update
+#   brew upgrade protocolcity/tap/protocolcity
 #
 # Product source repos may stay private; this Formula installs from PyPI only.
 
@@ -16,8 +20,8 @@ class Protocolcity < Formula
 
   desc "BluePrint suite — found a city, serve Map · Desk · Roster"
   homepage "https://pypi.org/project/protocolcity/"
-  url "https://files.pythonhosted.org/packages/c4/9b/c64cb50bfc8e8e7a8828e735cdfb4530dd11d6c172aa62c3b97a0da3729d/protocolcity-0.1.0.tar.gz"
-  sha256 "81494abb2b2bd9ae8751935e427ed2934c28cb4bf5f0404e5d6b4f72a7b3775f"
+  url "https://files.pythonhosted.org/packages/27/8e/11c16398f044b960ed246f29a66dad19bc01fe37cbeb23eeae58a517d1a3/protocolcity-0.1.1.tar.gz"
+  sha256 "f292e093df48262bd136d738e70866ae0ab60446910a502b614070595c167f44"
   license "Apache-2.0"
 
   depends_on "python@3.11"
