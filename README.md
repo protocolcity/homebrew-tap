@@ -16,4 +16,25 @@ to be public (install is PyPI + this tap only).
 
 Packages: `protocolcity` · `protocolcity-worklane` · `protocolcity-workforce`.
 
-Later (optional): a `homebrew-core` PR would enable bare `brew install protocolcity`.
+### What is a tap?
+
+Homebrew’s default catalog is **homebrew-core**. A **tap** is an extra formula
+repo we control. This repo is that catalog entry — not the app itself. The
+formula downloads the sdist from PyPI and installs engines into the same venv.
+
+### Product goal
+
+| Today | Goal |
+|---|---|
+| `brew install protocolcity/tap/protocolcity` | `brew install protocolcity` |
+| Custom tap (this repo) | Formula accepted into **homebrew-core** |
+
+One formula already = full suite. Core acceptance is the remaining discovery
+step for a shorter worldwide command.
+
+Remove:
+
+```bash
+brew uninstall protocolcity/tap/protocolcity
+# optional: brew untap protocolcity/tap
+```
