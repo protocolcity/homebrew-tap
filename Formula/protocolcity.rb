@@ -3,28 +3,25 @@
 
 # Formula for protocolcity/homebrew-tap.
 #
-# Digests filled after PyPI upload of protocolcity 0.1.8 (setup/uninstall).
+# protocolcity 0.1.9 — uninstall stops suite/engines (DMG-like).
 # Engines: protocolcity-worklane 0.1.3 + protocolcity-workforce 0.1.2.
 #
-# watchfiles: uvicorn[standard] pulls it for --reload only. Homebrew then
-# rewrites the .so dylib ID into Cellar paths and fails (headerpad).
-# Engines never use --reload in serve mode — drop watchfiles after pip.
+# watchfiles: dropped after pip (headerpad / dylib ID noise on brew relocate).
 #
 # Install:
 #   brew install protocolcity/tap/protocolcity
 #   protocolcity setup
 #
 # Remove:
-#   protocolcity uninstall
-#   brew uninstall protocolcity/tap/protocolcity
+#   protocolcity uninstall --app
 
 class Protocolcity < Formula
   include Language::Python::Virtualenv
 
   desc "BluePrint suite — setup a workspace, serve Map · Desk · Agents"
   homepage "https://pypi.org/project/protocolcity/"
-  url "https://files.pythonhosted.org/packages/f2/86/b05e2e1aed98d1ffa90dea3006d685849e89b5ccc2261f99cde84071dc25/protocolcity-0.1.8.tar.gz"
-  sha256 "8984c4390c2292edf4f393ae4dd92f2ad8ab16ca2c42a08e8fc09a53fdab38d3"
+  url "https://files.pythonhosted.org/packages/c5/40/5af382c89e80dccb95bc05377f3e274a157f53de44a1b9eea3fce476950e/protocolcity-0.1.9.tar.gz"
+  sha256 "e959fca524e75636217ce3f1ce8df3584b6fee88a5f7e1a6841427421c9a36fe"
   license "Apache-2.0"
 
   depends_on "python@3.11"
@@ -41,6 +38,7 @@ class Protocolcity < Formula
   test do
     assert_match "protocolcity", shell_output("#{bin}/protocolcity --help")
     assert_match "setup", shell_output("#{bin}/protocolcity setup --help")
+    assert_match "uninstall", shell_output("#{bin}/protocolcity uninstall --help")
     system libexec/"bin/python", "-c", "import worklane.server, workforce"
   end
 
@@ -50,10 +48,9 @@ class Protocolcity < Formula
 
         protocolcity setup
 
-      Remove (asks whether to keep or delete your workspace files):
+      Remove (stops suite/engines, then keep or delete workspace files):
 
-        protocolcity uninstall
-        brew uninstall protocolcity/tap/protocolcity
+        protocolcity uninstall --app
     EOS
   end
 end
