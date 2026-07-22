@@ -3,7 +3,7 @@
 
 # Formula for protocolcity/homebrew-tap.
 #
-# Digests filled after PyPI upload of protocolcity 0.1.6 (public README face).
+# Digests filled after PyPI upload of protocolcity 0.1.7 (suite cohesion session).
 # Engines: protocolcity-worklane 0.1.3 + protocolcity-workforce 0.1.2.
 #
 # pc-312: 0.1.4 used virtualenv_install_with_resources with only the two
@@ -27,8 +27,8 @@ class Protocolcity < Formula
 
   desc "BluePrint suite — found a city, serve Map · Desk · Roster (live pulse)"
   homepage "https://pypi.org/project/protocolcity/"
-  url "https://files.pythonhosted.org/packages/80/78/0cc728b4b924313da58c443b6a67cffe95e00160c8c19705ce603f0b8e15/protocolcity-0.1.6.tar.gz"
-  sha256 "be6c6fd3b2d4d8c7ba818fcdefa0bf5c8988540db7ea893fa8952a2aaa8f9a94"
+  url "https://files.pythonhosted.org/packages/f1/5c/e4bfeda8937765d46ed9878a5a626fbeca69841e62a7f641893ccbe27eed/protocolcity-0.1.7.tar.gz"
+  sha256 "126548ac0f75dde6387ee19edaf8bf84af301089a6693075b59c71878ac25984"
   license "Apache-2.0"
 
   depends_on "python@3.11"
