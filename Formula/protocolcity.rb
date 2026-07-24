@@ -3,7 +3,7 @@
 
 # Formula for protocolcity/homebrew-tap.
 #
-# protocolcity 0.1.11 — serve frees ports before bind.
+# protocolcity 0.1.12 — map soft-live, work-order drawer, ship freeze.
 # Engines: protocolcity-worklane 0.1.3 + protocolcity-workforce 0.1.3.
 #
 # Install:
@@ -18,8 +18,8 @@ class Protocolcity < Formula
 
   desc "BluePrint suite — setup a workspace, serve Map · Desk · Agents"
   homepage "https://pypi.org/project/protocolcity/"
-  url "https://files.pythonhosted.org/packages/66/71/1f7ad06293579c2b1c7a5dc0bdbc7df35e522d5022a4e901566de056d0ed/protocolcity-0.1.11.tar.gz"
-  sha256 "a2ff1f225673209e72fd45e434495d9ed93af6fa8db88e1b042574efb46c30ee"
+  url "https://files.pythonhosted.org/packages/c4/0b/f33d2cb183814c6d2c9537f336b50ddf1106c4c90aed8fa740832bcd167d/protocolcity-0.1.12.tar.gz"
+  sha256 "b5e90744140408381f06d8152f8a948fb928fb2a7f39c82c184f1bbac14ea45b"
   license "Apache-2.0"
 
   depends_on "python@3.11"
