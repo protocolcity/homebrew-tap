@@ -3,7 +3,7 @@
 
 # Formula for protocolcity/homebrew-tap.
 #
-# protocolcity 0.1.12 — map soft-live, work-order drawer, ship freeze.
+# protocolcity 0.1.13 — Overview project names → project brief.
 # Engines: protocolcity-worklane 0.1.3 + protocolcity-workforce 0.1.3.
 #
 # Install:
@@ -18,8 +18,8 @@ class Protocolcity < Formula
 
   desc "BluePrint suite — setup a workspace, serve Map · Desk · Agents"
   homepage "https://pypi.org/project/protocolcity/"
-  url "https://files.pythonhosted.org/packages/c4/0b/f33d2cb183814c6d2c9537f336b50ddf1106c4c90aed8fa740832bcd167d/protocolcity-0.1.12.tar.gz"
-  sha256 "b5e90744140408381f06d8152f8a948fb928fb2a7f39c82c184f1bbac14ea45b"
+  url "https://files.pythonhosted.org/packages/f5/40/edcd1665d86df7f30f04c16e4d0a1a8b0b9fc830ce8c7d1047e2399b8796/protocolcity-0.1.13.tar.gz"
+  sha256 "5c22177d86325378357f801b43278e71d15847d6e39bb41c84a302784faa3005"
   license "Apache-2.0"
 
   depends_on "python@3.11"
