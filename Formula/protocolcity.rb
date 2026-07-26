@@ -3,7 +3,7 @@
 
 # Formula for protocolcity/homebrew-tap.
 #
-# protocolcity 0.1.13 — Overview project names → project brief.
+# protocolcity 0.1.15 — beta harden: login agent, soft-live Map, serve fix.
 # Engines: protocolcity-worklane 0.1.3 + protocolcity-workforce 0.1.3.
 #
 # Install:
@@ -19,8 +19,8 @@ class Protocolcity < Formula
 
   desc "BluePrint suite — setup a workspace, serve Map · Desk · Agents"
   homepage "https://pypi.org/project/protocolcity/"
-  url "https://files.pythonhosted.org/packages/f5/40/edcd1665d86df7f30f04c16e4d0a1a8b0b9fc830ce8c7d1047e2399b8796/protocolcity-0.1.13.tar.gz"
-  sha256 "5c22177d86325378357f801b43278e71d15847d6e39bb41c84a302784faa3005"
+  url "https://files.pythonhosted.org/packages/05/7b/5e1ea7cc03a7534b8968b2daac6c6f151f38f84a304d4a8dc905d07d4e41/protocolcity-0.1.15.tar.gz"
+  sha256 "3ce5394b1bb0eb0b848c59cec2ac6c408b43519185ef6024236e7496d498ffa1"
   license "Apache-2.0"
 
   depends_on "python@3.11"
@@ -34,7 +34,7 @@ class Protocolcity < Formula
     system libexec/"bin/python", "-m", "pip", "uninstall", "-y", "watchfiles"
   end
 
-  # pc-438: best-effort stop of suite/engines so brew upgrade does not leave
+  # Best-effort stop of suite/engines so brew upgrade does not leave
   # an orphan process serving a deleted Cellar path (blank 404 on all routes).
   def post_install
     system bin/"protocolcity", "stop", "--quiet"
@@ -43,9 +43,8 @@ class Protocolcity < Formula
   end
 
   test do
-    # Until formula url bumps to >=0.1.14, only protocolcity script is on the
-    # live wheel; blueprint dual entry lands with that release (pc-429).
     assert_match "setup", shell_output("#{bin}/protocolcity setup --help")
+    assert_match "service", shell_output("#{bin}/protocolcity service --help")
     system libexec/"bin/python", "-c", "import worklane.server, workforce"
   end
 
@@ -55,23 +54,26 @@ class Protocolcity < Formula
 
       Next — create or adopt a workspace:
 
-        protocolcity setup
-
-      Preferred verb (once the formula points at package >=0.1.14):
-
         blueprint setup
+        # or: protocolcity setup
 
-      (`blueprint` and `protocolcity` are the same program — dual console
-      scripts. Engines ship with the suite.)
+      Serve (engines start by default when a root is set):
+
+        blueprint serve --root <your-workspace>
+
+      Keep running after you close the terminal (macOS):
+
+        blueprint service install --root <your-workspace>
 
       If BluePrint was running during upgrade, restart once:
 
-        protocolcity stop
-        protocolcity serve --root <your-workspace>
+        blueprint stop
+        blueprint serve --root <your-workspace>
+        # or: blueprint service install --root <your-workspace>
 
       Remove (stops suite/engines, then keep or delete workspace files):
 
-        protocolcity uninstall --app
+        blueprint uninstall --app
     EOS
   end
 end
