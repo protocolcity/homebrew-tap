@@ -34,6 +34,14 @@ class Protocolcity < Formula
     system libexec/"bin/python", "-m", "pip", "uninstall", "-y", "watchfiles"
   end
 
+  # pc-438: best-effort stop of suite/engines so brew upgrade does not leave
+  # an orphan process serving a deleted Cellar path (blank 404 on all routes).
+  def post_install
+    system bin/"protocolcity", "stop", "--quiet"
+  rescue
+    nil
+  end
+
   test do
     # Until formula url bumps to >=0.1.14, only protocolcity script is on the
     # live wheel; blueprint dual entry lands with that release (pc-429).
@@ -55,6 +63,11 @@ class Protocolcity < Formula
 
       (`blueprint` and `protocolcity` are the same program — dual console
       scripts. Engines ship with the suite.)
+
+      If BluePrint was running during upgrade, restart once:
+
+        protocolcity stop
+        protocolcity serve --root <your-workspace>
 
       Remove (stops suite/engines, then keep or delete workspace files):
 
