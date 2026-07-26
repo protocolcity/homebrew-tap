@@ -8,10 +8,11 @@
 #
 # Install:
 #   brew install protocolcity/tap/protocolcity
-#   protocolcity setup
+#   blueprint setup          # taught (BluePrint suite)
+#   protocolcity setup       # same CLI (compat alias)
 #
 # Remove:
-#   protocolcity uninstall --app
+#   blueprint uninstall --app
 
 class Protocolcity < Formula
   include Language::Python::Virtualenv
@@ -34,16 +35,26 @@ class Protocolcity < Formula
   end
 
   test do
-    assert_match "protocolcity", shell_output("#{bin}/protocolcity --help")
+    # Until formula url bumps to >=0.1.14, only protocolcity script is on the
+    # live wheel; blueprint dual entry lands with that release (pc-429).
     assert_match "setup", shell_output("#{bin}/protocolcity setup --help")
     system libexec/"bin/python", "-c", "import worklane.server, workforce"
   end
 
   def caveats
     <<~EOS
-      ProtocolCity is installed. Next — create or adopt a workspace:
+      BluePrint suite is installed (ProtocolCity kit).
+
+      Next — create or adopt a workspace:
 
         protocolcity setup
+
+      Preferred verb (once the formula points at package >=0.1.14):
+
+        blueprint setup
+
+      (`blueprint` and `protocolcity` are the same program — dual console
+      scripts. Engines ship with the suite.)
 
       Remove (stops suite/engines, then keep or delete workspace files):
 
