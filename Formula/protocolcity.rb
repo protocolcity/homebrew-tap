@@ -4,7 +4,7 @@
 # Formula for protocolcity/homebrew-tap.
 #
 # protocolcity 0.1.15 — beta harden: login agent, soft-live Map, serve fix.
-# Engines: protocolcity-worklane 0.1.3 + protocolcity-workforce 0.1.3.
+# Engines: protocolcity-worklane 0.1.3 + protocolcity-workforce 0.1.4.
 #
 # Install:
 #   brew install protocolcity/tap/protocolcity
@@ -30,7 +30,7 @@ class Protocolcity < Formula
     venv.pip_install_and_link buildpath
     system libexec/"bin/python", "-m", "pip", "install",
            "protocolcity-worklane==0.1.3",
-           "protocolcity-workforce==0.1.3"
+           "protocolcity-workforce==0.1.4"
     system libexec/"bin/python", "-m", "pip", "uninstall", "-y", "watchfiles"
   end
 
