@@ -3,8 +3,11 @@
 Homebrew tap for the **BluePrint** suite — **one install, full suite**.
 
 ```bash
+brew tap protocolcity/tap
+brew trust protocolcity/tap   # once — third-party tap (both formula twins)
 brew install protocolcity/tap/blueprint
-blueprint setup ~/my-workspace
+blueprint setup               # menu: opt 2 asks for the full path to your folder
+# or: blueprint setup --adopt-workspace ~/path/to/existing
 blueprint serve --root ~/my-workspace --with-engines
 # → http://127.0.0.1:8801/
 ```
