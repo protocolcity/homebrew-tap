@@ -3,22 +3,23 @@
 
 # Formula for protocolcity/homebrew-tap.
 #
-# Compat formula name (product face = BluePrint). Taught install:
-#   brew install protocolcity/tap/blueprint
-# This twin remains for existing installs and docs that still say protocolcity.
-# Same bottle as Formula/blueprint.rb.
+# Taught formula name: blueprint (product face = BluePrint suite).
+# Twin of Formula/protocolcity.rb (compat) — same bottle, same binaries.
+# PyPI distro name remains protocolcity until protocolcity-blueprint dual-publish.
 # Engines: protocolcity-worklane 0.1.4 + protocolcity-workforce 0.1.4.
 #
-# Install (compat):
+# Install (taught):
+#   brew install protocolcity/tap/blueprint
+#   blueprint setup
+#
+# Compat:
 #   brew install protocolcity/tap/protocolcity
-# Taught CLI after either formula:
-#   blueprint setup          # primary
-#   protocolcity setup       # alias
+#   protocolcity setup   # same CLI
 #
 # Remove:
 #   blueprint uninstall --app
 
-class Protocolcity < Formula
+class Blueprint < Formula
   include Language::Python::Virtualenv
 
   desc "BluePrint suite — setup a workspace, serve Map · Desk · Agents"
@@ -28,8 +29,8 @@ class Protocolcity < Formula
   license "Apache-2.0"
 
   depends_on "python@3.11"
-  # Twin of blueprint formula (taught name) — install only one.
-  conflicts_with "blueprint",
+  # Twin of protocolcity formula — install only one.
+  conflicts_with "protocolcity",
                  because: "both install the BluePrint suite (same blueprint/protocolcity binaries)"
 
   def install
