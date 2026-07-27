@@ -6,7 +6,7 @@
 # Taught formula name: blueprint (product face = BluePrint suite).
 # Twin of Formula/protocolcity.rb (compat) — same bottle, same binaries.
 # PyPI distro name remains protocolcity until protocolcity-blueprint dual-publish.
-# Engines: protocolcity-worklane 0.1.4 + protocolcity-workforce 0.1.4.
+# Engines: protocolcity-worklane 0.1.5 + protocolcity-workforce 0.1.5.
 #
 # Install (taught):
 #   brew install protocolcity/tap/blueprint
@@ -37,8 +37,8 @@ class Blueprint < Formula
     venv = virtualenv_create(libexec, "python3.11")
     venv.pip_install_and_link buildpath
     system libexec/"bin/python", "-m", "pip", "install",
-           "protocolcity-worklane==0.1.4",
-           "protocolcity-workforce==0.1.4"
+           "protocolcity-worklane==0.1.5",
+           "protocolcity-workforce==0.1.5"
     system libexec/"bin/python", "-m", "pip", "uninstall", "-y", "watchfiles"
   end
 

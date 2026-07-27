@@ -7,7 +7,7 @@
 #   brew install protocolcity/tap/blueprint
 # This twin remains for existing installs and docs that still say protocolcity.
 # Same bottle as Formula/blueprint.rb.
-# Engines: protocolcity-worklane 0.1.4 + protocolcity-workforce 0.1.4.
+# Engines: protocolcity-worklane 0.1.5 + protocolcity-workforce 0.1.5.
 #
 # Install (compat):
 #   brew install protocolcity/tap/protocolcity
@@ -36,8 +36,8 @@ class Protocolcity < Formula
     venv = virtualenv_create(libexec, "python3.11")
     venv.pip_install_and_link buildpath
     system libexec/"bin/python", "-m", "pip", "install",
-           "protocolcity-worklane==0.1.4",
-           "protocolcity-workforce==0.1.4"
+           "protocolcity-worklane==0.1.5",
+           "protocolcity-workforce==0.1.5"
     system libexec/"bin/python", "-m", "pip", "uninstall", "-y", "watchfiles"
   end
 
