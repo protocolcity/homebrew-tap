@@ -4,7 +4,7 @@ Homebrew tap for the **BluePrint** suite — **one install, full suite**.
 
 ```bash
 brew tap protocolcity/tap
-brew trust protocolcity/tap   # once — third-party tap (both formula twins)
+brew trust protocolcity/tap   # once — third-party tap
 brew install protocolcity/tap/blueprint
 blueprint setup               # menu: opt 2 asks for the full path to your folder
 # or: blueprint setup --adopt-workspace ~/path/to/existing
@@ -19,10 +19,9 @@ to be public (install is PyPI + this tap only).
 
 | Formula | Role |
 |---|---|
-| **`blueprint`** | **Taught** — product face |
-| **`protocolcity`** | Compat twin (same bottle; conflicts if both installed) |
+| **`blueprint`** | **Only formula** — product face + CLI |
 
-After install, both commands work: **`blueprint`** (primary) · **`protocolcity`** (alias).
+Taught command after install: **`blueprint`** only (no `protocolcity` CLI alias).
 
 Packages on PyPI: `protocolcity` · `protocolcity-worklane` · `protocolcity-workforce`
 (preferred future kit name: `protocolcity-blueprint`).
@@ -47,7 +46,5 @@ Remove:
 
 ```bash
 brew uninstall protocolcity/tap/blueprint
-# if you installed the compat name:
-# brew uninstall protocolcity/tap/protocolcity
 # optional: brew untap protocolcity/tap
 ```

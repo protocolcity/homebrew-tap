@@ -3,18 +3,13 @@
 
 # Formula for protocolcity/homebrew-tap.
 #
-# Taught formula name: blueprint (product face = BluePrint suite).
-# Twin of Formula/protocolcity.rb (compat) — same bottle, same binaries.
+# Sole formula: blueprint (product face = BluePrint suite).
 # PyPI distro name remains protocolcity until protocolcity-blueprint dual-publish.
 # Engines: protocolcity-worklane 0.1.5 + protocolcity-workforce 0.1.5.
 #
-# Install (taught):
+# Install:
 #   brew install protocolcity/tap/blueprint
 #   blueprint setup
-#
-# Compat:
-#   brew install protocolcity/tap/protocolcity
-#   protocolcity setup   # same CLI
 #
 # Remove:
 #   blueprint uninstall --app
@@ -29,9 +24,6 @@ class Blueprint < Formula
   license "Apache-2.0"
 
   depends_on "python@3.11"
-  # Twin of protocolcity formula — install only one.
-  conflicts_with "protocolcity",
-                 because: "both install the BluePrint suite (same blueprint/protocolcity binaries)"
 
   def install
     venv = virtualenv_create(libexec, "python3.11")
@@ -40,19 +32,22 @@ class Blueprint < Formula
            "protocolcity-worklane==0.1.5",
            "protocolcity-workforce==0.1.5"
     system libexec/"bin/python", "-m", "pip", "uninstall", "-y", "watchfiles"
+    # Drop legacy console-script name if an older wheel still shipped it.
+    rm_f bin/"protocolcity"
   end
 
   # Best-effort stop of suite/engines so brew upgrade does not leave
   # an orphan process serving a deleted Cellar path (blank 404 on all routes).
   def post_install
-    system bin/"protocolcity", "stop", "--quiet"
+    system bin/"blueprint", "stop", "--quiet"
   rescue
     nil
   end
 
   test do
-    assert_match "setup", shell_output("#{bin}/protocolcity setup --help")
-    assert_match "service", shell_output("#{bin}/protocolcity service --help")
+    assert_match "setup", shell_output("#{bin}/blueprint setup --help")
+    assert_match "service", shell_output("#{bin}/blueprint service --help")
+    refute_predicate bin/"protocolcity", :exist?
     system libexec/"bin/python", "-c", "import worklane.server, workforce"
   end
 
@@ -63,21 +58,25 @@ class Blueprint < Formula
       Next — create or adopt a workspace:
 
         blueprint setup
-        # or: protocolcity setup
+        # setup offers: keep running after you close the terminal? (macOS)
 
       Serve (engines start by default when a root is set):
 
         blueprint serve --root <your-workspace>
 
-      Keep running after you close the terminal (macOS):
+      Keep running after you close the terminal (macOS login LaunchAgent):
 
         blueprint service install --root <your-workspace>
 
-      If BluePrint was running during upgrade, restart once:
+      After brew upgrade/install, post_install runs `blueprint stop`, which
+      unloads the suite (and login agent) so a deleted Cellar path is not
+      kept alive. Restore always-on:
 
-        blueprint stop
+        blueprint service start
+        # if you never installed the agent:
+        blueprint service install --root <your-workspace>
+        # one-shot (no login agent):
         blueprint serve --root <your-workspace>
-        # or: blueprint service install --root <your-workspace>
 
       Remove (stops suite/engines, then keep or delete workspace files):
 
