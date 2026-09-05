@@ -19,8 +19,8 @@ class Blueprint < Formula
 
   desc "BluePrint suite — setup a workspace, serve Map · Desk · Agents"
   homepage "https://pypi.org/project/protocolcity/"
-  url "https://files.pythonhosted.org/packages/e6/84/2a2729075e82439831d6933b720899fee3508b7b5e33977db01aa6b1ffd6/protocolcity_blueprint-0.1.47.tar.gz"
-  sha256 "aeb33f8e3406c48701558d758b33f40a3d34d7c14e8eccd1a3252b05fc42b307"
+  url "https://files.pythonhosted.org/packages/8d/4b/d0ff808712ace217c77d656bddf14394b54f745f55f5a5f261944b2cb55e/protocolcity_blueprint-0.1.48.tar.gz"
+  sha256 "b70fdc95df672a5f7c14e818833f695afdebcb8639ec95d8c23623e91ab49b3c"
   license "Apache-2.0"
 
   depends_on "python@3.11"
