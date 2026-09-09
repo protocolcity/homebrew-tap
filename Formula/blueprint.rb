@@ -19,8 +19,8 @@ class Blueprint < Formula
 
   desc "BluePrint suite — setup a workspace, serve Map · Desk · Agents"
   homepage "https://pypi.org/project/protocolcity/"
-  url "https://files.pythonhosted.org/packages/8d/4b/d0ff808712ace217c77d656bddf14394b54f745f55f5a5f261944b2cb55e/protocolcity_blueprint-0.1.48.tar.gz"
-  sha256 "b70fdc95df672a5f7c14e818833f695afdebcb8639ec95d8c23623e91ab49b3c"
+  url "https://files.pythonhosted.org/packages/a5/04/1ad216c26e7fd977c1a646f9cc2babc1535d0027301fd8f70646b73008b6/protocolcity_blueprint-0.1.49.tar.gz"
+  sha256 "c214b7115ae376ff17734707600f1790ce96cb8958b5918892e58a3e9f583107"
   license "Apache-2.0"
 
   depends_on "python@3.11"
@@ -74,7 +74,7 @@ class Blueprint < Formula
 
         blueprint service start
         # if you never installed the agent:
-        blueprint service install --root <your-workspace>
+          blueprint service install --root <your-workspace>
         # one-shot (no login agent):
         blueprint serve --root <your-workspace>
 
