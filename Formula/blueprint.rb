@@ -74,7 +74,7 @@ class Blueprint < Formula
 
         blueprint service start
         # if you never installed the agent:
-          blueprint service install --root <your-workspace>
+        blueprint service install --root <your-workspace>
         # one-shot (no login agent):
         blueprint serve --root <your-workspace>
 
