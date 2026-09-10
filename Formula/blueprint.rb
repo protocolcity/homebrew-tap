@@ -17,7 +17,9 @@
 #   - Overview MC Spec / inventory docs are unaffected by this pin.
 #
 # Version face "0.1.50" is the Cellar face for this Map V1 drop; it is NOT
-# a PyPI 0.1.50 cut (no twine to PyPI). Revision 3 = suite pinned to 0.1.47.
+# a PyPI 0.1.50 cut (no twine to PyPI). Revision 4 = Map tip bumped to
+# BluePrint #41 (dig REPLACE/PUSH + hub crowding) @ c9dddcf3; suite resource
+# still pinned to PyPI 0.1.47.
 #
 # Engines: protocolcity-worklane 0.1.7 + protocolcity-workforce 0.1.7.
 #
@@ -35,13 +37,13 @@ class Blueprint < Formula
 
   desc "BluePrint suite — setup a workspace, serve Map · Desk · Agents"
   homepage "https://github.com/protocolcity/BluePrint"
-  url "https://github.com/protocolcity/BluePrint/archive/31353986a5a4883aca4461cae69cf80782f95c77.tar.gz"
-  sha256 "4991ee53776b95f0c8a6d6c2f3f3638cfaacd83a9eb07c1fe4193b274ef561e5"
+  url "https://github.com/protocolcity/BluePrint/archive/c9dddcf3aad630022dd2802d3d0b9314df4cd094.tar.gz"
+  sha256 "dc1b1b294bd76cd830c5c05ed88939765c67747421659bc114b3e05022f4962f"
   version "0.1.50"
-  # Hub collision tip 31353986a5a4883aca4461cae69cf80782f95c77 (BluePrint #40 merged).
-  # Revision 3: suite resource pinned to PyPI 0.1.47 for daily :8801 dogfood.
-  # Map V1 tip (primary url/sha256) unchanged — still the Map SoT via :8802.
-  revision 3
+  # BluePrint #41 dig REPLACE/PUSH + hub crowding @ c9dddcf3.
+  # Revision 4: Map tip bumped to BluePrint #41 (primary url/sha256).
+  # Suite resource still pinned to PyPI 0.1.47 for daily :8801 dogfood.
+  revision 4
   license "Apache-2.0"
 
   depends_on "python@3.11"
