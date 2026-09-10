@@ -18,9 +18,10 @@
 #   - Overview MC Spec / inventory docs are unaffected by this pin.
 #
 # Version face "0.1.50" is the Cellar face for this Map+Overview V1 drop; it is
-# NOT a PyPI 0.1.50 cut (no twine to PyPI). Revision 5 = Overview #42 tip
-# (Overview V1 MC shell) @ de05933a; Map tip included from the same archive.
-# Suite resource still pinned to PyPI 0.1.47 (HARD HOLD, :8801 feel).
+# NOT a PyPI 0.1.50 cut (no twine to PyPI). Revision 6 = Overview #43 tip
+# (focusable tiles + silent empty pulse) @ c35db4f5; Map tip included from the
+# same archive. Suite resource still pinned to PyPI 0.1.47 (HARD HOLD, :8801
+# feel).
 #
 # Engines: protocolcity-worklane 0.1.7 + protocolcity-workforce 0.1.7.
 #
@@ -39,13 +40,13 @@ class Blueprint < Formula
 
   desc "BluePrint suite — setup a workspace, serve Map · Desk · Agents"
   homepage "https://github.com/protocolcity/BluePrint"
-  url "https://github.com/protocolcity/BluePrint/archive/de05933a31985c0a51d5aaa9d429e9b8f46ec33d.tar.gz"
-  sha256 "6da7d0123a002fd1065d6281e4a3623a5b4fdb92e75001f961d479704be41ccb"
+  url "https://github.com/protocolcity/BluePrint/archive/c35db4f5d7c4eb990dc3d80bc1693dc7f18e43ff.tar.gz"
+  sha256 "de42c1eafe3472bf462da0ed651609d40e6e82cb6ad152af5b0e5ed7d780c71a"
   version "0.1.50"
-  # BluePrint #42 Overview V1 MC shell @ de05933a; Map tip included.
-  # Revision 5: Overview V1 tip + new `blueprint-overview` wrapper on :8803.
+  # BluePrint #43 Overview focusable tiles + silent empty pulse @ c35db4f5;
+  # Map tip included. Revision 6: Overview tip polish only.
   # Suite resource still pinned to PyPI 0.1.47 for daily :8801 dogfood.
-  revision 5
+  revision 6
   license "Apache-2.0"
 
   depends_on "python@3.11"
