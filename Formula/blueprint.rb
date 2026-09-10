@@ -31,11 +31,11 @@ class Blueprint < Formula
 
   desc "BluePrint suite — setup a workspace, serve Map · Desk · Agents"
   homepage "https://github.com/protocolcity/BluePrint"
-  url "https://github.com/protocolcity/BluePrint/archive/4100a9de6ecfb8cb7b4f8301983e08d58fa53ca8.tar.gz"
-  sha256 "7435ab32c10016bc0addfd5b56c3c43bdbf1c97b42aa2a418c8a5960ad9911c7"
+  url "https://github.com/protocolcity/BluePrint/archive/31353986a5a4883aca4461cae69cf80782f95c77.tar.gz"
+  sha256 "4991ee53776b95f0c8a6d6c2f3f3638cfaacd83a9eb07c1fe4193b274ef561e5"
   version "0.1.50"
-  # Map polish tip 4100a9de6ecfb8cb7b4f8301983e08d58fa53ca8 (BluePrint #37 merged).
-  revision 1
+  # Hub collision tip 31353986a5a4883aca4461cae69cf80782f95c77 (BluePrint #40 merged).
+  revision 2
   license "Apache-2.0"
 
   depends_on "python@3.11"
