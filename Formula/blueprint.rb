@@ -18,10 +18,10 @@
 #   - Overview MC Spec / inventory docs are unaffected by this pin.
 #
 # Version face "0.1.50" is the Cellar face for this Map+Overview V1 drop; it is
-# NOT a PyPI 0.1.50 cut (no twine to PyPI). Revision 11 = post-#52+#53 live binder + hub crowding
-# tip @ e34a5e0 (Agents/Jobs mtime re-read + Settings blank-until-pulse);
-# Map tip included from the same archive. Suite resource still pinned to
-# PyPI 0.1.47 (HARD HOLD, :8801 feel).
+# NOT a PyPI 0.1.50 cut (no twine to PyPI). Revision 12 = post-#54+#55 tip
+# @ 4cc69b3e (Phase-B projectors + Jobs tile cap + Agents display +
+# LaunchAgent --binder caveat); Map tip included from the same archive.
+# Suite resource still pinned to PyPI 0.1.47 (HARD HOLD, :8801 feel).
 #
 # Engines: protocolcity-worklane 0.1.7 + protocolcity-workforce 0.1.7.
 #
@@ -30,7 +30,7 @@
 #   blueprint setup
 #   blueprint serve --root <your-workspace>       # daily dogfood on :8801
 #   blueprint-map --binder <dir> --port 8802      # Map V1 SoT on :8802
-#   blueprint-overview                            # Overview V1 MC on :8803
+#   blueprint-overview --binder <dir> --port 8803 # Overview V1 MC on :8803
 #
 # Remove:
 #   blueprint uninstall --app
@@ -40,13 +40,13 @@ class Blueprint < Formula
 
   desc "BluePrint suite — setup a workspace, serve Map · Desk · Agents"
   homepage "https://github.com/protocolcity/BluePrint"
-  url "https://github.com/protocolcity/BluePrint/archive/e34a5e0876f4efe461c11fed86a4b2257d67db0e.tar.gz"
-  sha256 "dcb4e1bbb19ed52be1718bbe518782a33f8c1e52a9eda121b2aa0091b7281b63"
+  url "https://github.com/protocolcity/BluePrint/archive/4cc69b3e13c2aafc3ef320b0fd76ef9c3b449927.tar.gz"
+  sha256 "f156990a45f5ec189dae7096d7094280a040a39400b5a51a5f02ed88e459a252"
   version "0.1.50"
-  # BluePrint #52 live binder + #53 hub crowding density stack
-  # @ e34a5e0; Map tip included. Revision 11: overview truth + Map hub crowding.
+  # BluePrint #54 Phase-B + #55 Jobs cap / display / LaunchAgent --binder
+  # @ 4cc69b3e; Map tip included. Revision 12: overview Agents/Jobs honesty.
   # Suite resource still pinned to PyPI 0.1.47 for daily :8801 dogfood.
-  revision 11
+  revision 12
   license "Apache-2.0"
 
   depends_on "python@3.11"
@@ -146,7 +146,11 @@ class Blueprint < Formula
       Overview V1 Mission Control (SoT = protocolcity/BluePrint tip) — served
       by blueprint-overview on :8803:
 
-        blueprint-overview
+        blueprint-overview --binder <your-binder-dir> --port 8803
+
+      Phase-B Agents/Jobs projectors need --binder (WorkForce roster +
+      WorkLane stores under the binder). Without it, Overview still boots
+      but Agents/Jobs stay honest-empty. Match Map's LaunchAgent shape.
 
       Suite CLI is pinned to PyPI 0.1.47 until the suite BFF mounts V1
       endpoints. No suite BFF mount yet. Overview MC Spec / inventory docs
