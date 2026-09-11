@@ -18,10 +18,10 @@
 #   - Overview MC Spec / inventory docs are unaffected by this pin.
 #
 # Version face "0.1.50" is the Cellar face for this Map+Overview V1 drop; it is
-# NOT a PyPI 0.1.50 cut (no twine to PyPI). Revision 11 = post-#52+#53 live binder + hub crowding
-# tip @ e34a5e0 (Agents/Jobs mtime re-read + Settings blank-until-pulse);
-# Map tip included from the same archive. Suite resource still pinned to
-# PyPI 0.1.47 (HARD HOLD, :8801 feel).
+# NOT a PyPI 0.1.50 cut (no twine to PyPI). Revision 12 = post-#54 Phase-B tip
+# @ fb6a39a2 (WorkForce/WorkLane Agents/Jobs projectors); Map tip included
+# from the same archive. Suite resource still pinned to PyPI 0.1.47
+# (HARD HOLD, :8801 feel).
 #
 # Engines: protocolcity-worklane 0.1.7 + protocolcity-workforce 0.1.7.
 #
@@ -40,13 +40,13 @@ class Blueprint < Formula
 
   desc "BluePrint suite — setup a workspace, serve Map · Desk · Agents"
   homepage "https://github.com/protocolcity/BluePrint"
-  url "https://github.com/protocolcity/BluePrint/archive/e34a5e0876f4efe461c11fed86a4b2257d67db0e.tar.gz"
-  sha256 "dcb4e1bbb19ed52be1718bbe518782a33f8c1e52a9eda121b2aa0091b7281b63"
+  url "https://github.com/protocolcity/BluePrint/archive/fb6a39a2317d6f3f4f2b4a25112473b503dae7f8.tar.gz"
+  sha256 "deb6ac60c261ad2a65299951fc78d1a2c0f9184cfcbd9dea3bf8a79002438424"
   version "0.1.50"
-  # BluePrint #52 live binder + #53 hub crowding density stack
-  # @ e34a5e0; Map tip included. Revision 11: overview truth + Map hub crowding.
+  # BluePrint #54 Phase-B WorkForce/WorkLane Agents/Jobs projectors
+  # @ fb6a39a2; Map tip included. Revision 12: Phase-B overview projectors.
   # Suite resource still pinned to PyPI 0.1.47 for daily :8801 dogfood.
-  revision 11
+  revision 12
   license "Apache-2.0"
 
   depends_on "python@3.11"
@@ -146,7 +146,11 @@ class Blueprint < Formula
       Overview V1 Mission Control (SoT = protocolcity/BluePrint tip) — served
       by blueprint-overview on :8803:
 
-        blueprint-overview
+        blueprint-overview --binder <your-binder-dir> --port 8803
+
+      Phase-B Agents/Jobs projectors need --binder (WorkForce roster +
+      WorkLane stores under the binder). Without it, Overview still boots
+      but Agents/Jobs stay honest-empty. Match Map's LaunchAgent shape.
 
       Suite CLI is pinned to PyPI 0.1.47 until the suite BFF mounts V1
       endpoints. No suite BFF mount yet. Overview MC Spec / inventory docs
