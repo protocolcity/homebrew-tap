@@ -18,8 +18,8 @@
 #   - Overview MC Spec / inventory docs are unaffected by this pin.
 #
 # Version face "0.1.50" is the Cellar face for this Map+Overview V1 drop; it is
-# NOT a PyPI 0.1.50 cut (no twine to PyPI). Revision 11 = post-#52 live binder
-# tip @ 8ddf0d63 (Agents/Jobs mtime re-read + Settings blank-until-pulse);
+# NOT a PyPI 0.1.50 cut (no twine to PyPI). Revision 11 = post-#52+#53 live binder + hub crowding
+# tip @ e34a5e0 (Agents/Jobs mtime re-read + Settings blank-until-pulse);
 # Map tip included from the same archive. Suite resource still pinned to
 # PyPI 0.1.47 (HARD HOLD, :8801 feel).
 #
@@ -40,11 +40,11 @@ class Blueprint < Formula
 
   desc "BluePrint suite — setup a workspace, serve Map · Desk · Agents"
   homepage "https://github.com/protocolcity/BluePrint"
-  url "https://github.com/protocolcity/BluePrint/archive/8ddf0d63fc7f6e6d240f8ff2791790c7a31da0d7.tar.gz"
-  sha256 "478bcfb2c48e18793da408f841d8264d7c7950d748db0e4724209d9e9a3b3aa6"
+  url "https://github.com/protocolcity/BluePrint/archive/e34a5e0876f4efe461c11fed86a4b2257d67db0e.tar.gz"
+  sha256 "dcb4e1bbb19ed52be1718bbe518782a33f8c1e52a9eda121b2aa0091b7281b63"
   version "0.1.50"
-  # BluePrint #52 live binder Agents/Jobs re-read + Settings cold tip blank
-  # @ 8ddf0d63; Map tip included. Revision 11: overview truth peel only.
+  # BluePrint #52 live binder + #53 hub crowding density stack
+  # @ e34a5e0; Map tip included. Revision 11: overview truth + Map hub crowding.
   # Suite resource still pinned to PyPI 0.1.47 for daily :8801 dogfood.
   revision 11
   license "Apache-2.0"
