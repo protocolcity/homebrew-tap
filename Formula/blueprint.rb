@@ -18,10 +18,10 @@
 #   - Overview MC Spec / inventory docs are unaffected by this pin.
 #
 # Version face "0.1.50" is the Cellar face for this Map+Overview V1 drop; it is
-# NOT a PyPI 0.1.50 cut (no twine to PyPI). Revision 9 = post-#50 Overview glass
-# tip @ dd956aa (real lens nav + binder truth + Calendar/Settings shells +
-# Writer Calendar title/lead); Map tip included from the same archive. Suite
-# resource still pinned to PyPI 0.1.47 (HARD HOLD, :8801 feel).
+# NOT a PyPI 0.1.50 cut (no twine to PyPI). Revision 10 = post-#51 cellar-tip
+# detect tip @ 04bf6015 (brew list --versions + fallback 0.1.50_9); Map tip
+# included from the same archive. Suite resource still pinned to PyPI 0.1.47
+# (HARD HOLD, :8801 feel).
 #
 # Engines: protocolcity-worklane 0.1.7 + protocolcity-workforce 0.1.7.
 #
@@ -40,14 +40,13 @@ class Blueprint < Formula
 
   desc "BluePrint suite — setup a workspace, serve Map · Desk · Agents"
   homepage "https://github.com/protocolcity/BluePrint"
-  url "https://github.com/protocolcity/BluePrint/archive/dd956aabd10158044efe4ceb3d58010f433bb897.tar.gz"
-  sha256 "b41599eade86cd9611e913d78b50e4c433c637b650cf84b4d2769f48d7442f08"
+  url "https://github.com/protocolcity/BluePrint/archive/04bf6015af7ea742e4b2afc8d62c6385d4bf83d5.tar.gz"
+  sha256 "aafd5314142199dd0c454567b82e2d58800772b39c5ef33eb6cf3fca4efe6fa9"
   version "0.1.50"
-  # BluePrint #50 Overview glass (lens nav + binder truth + Calendar/Settings +
-  # Writer Calendar title/lead) @ dd956aa; Map tip included. Revision 9:
-  # Overview nav+truth tip only. Suite resource still pinned to PyPI 0.1.47
-  # for daily :8801 dogfood.
-  revision 9
+  # BluePrint #51 cellar-tip detect (brew list --versions + fallback 0.1.50_9)
+  # @ 04bf6015; Map tip included. Revision 10: cellar-tip honesty peel only.
+  # Suite resource still pinned to PyPI 0.1.47 for daily :8801 dogfood.
+  revision 10
   license "Apache-2.0"
 
   depends_on "python@3.11"
