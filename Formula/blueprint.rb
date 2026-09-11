@@ -18,10 +18,10 @@
 #   - Overview MC Spec / inventory docs are unaffected by this pin.
 #
 # Version face "0.1.50" is the Cellar face for this Map+Overview V1 drop; it is
-# NOT a PyPI 0.1.50 cut (no twine to PyPI). Revision 10 = post-#51 cellar-tip
-# detect tip @ 04bf6015 (brew list --versions + fallback 0.1.50_9); Map tip
-# included from the same archive. Suite resource still pinned to PyPI 0.1.47
-# (HARD HOLD, :8801 feel).
+# NOT a PyPI 0.1.50 cut (no twine to PyPI). Revision 11 = post-#52+#53 live binder + hub crowding
+# tip @ e34a5e0 (Agents/Jobs mtime re-read + Settings blank-until-pulse);
+# Map tip included from the same archive. Suite resource still pinned to
+# PyPI 0.1.47 (HARD HOLD, :8801 feel).
 #
 # Engines: protocolcity-worklane 0.1.7 + protocolcity-workforce 0.1.7.
 #
@@ -40,13 +40,13 @@ class Blueprint < Formula
 
   desc "BluePrint suite — setup a workspace, serve Map · Desk · Agents"
   homepage "https://github.com/protocolcity/BluePrint"
-  url "https://github.com/protocolcity/BluePrint/archive/04bf6015af7ea742e4b2afc8d62c6385d4bf83d5.tar.gz"
-  sha256 "aafd5314142199dd0c454567b82e2d58800772b39c5ef33eb6cf3fca4efe6fa9"
+  url "https://github.com/protocolcity/BluePrint/archive/e34a5e0876f4efe461c11fed86a4b2257d67db0e.tar.gz"
+  sha256 "dcb4e1bbb19ed52be1718bbe518782a33f8c1e52a9eda121b2aa0091b7281b63"
   version "0.1.50"
-  # BluePrint #51 cellar-tip detect (brew list --versions + fallback 0.1.50_9)
-  # @ 04bf6015; Map tip included. Revision 10: cellar-tip honesty peel only.
+  # BluePrint #52 live binder + #53 hub crowding density stack
+  # @ e34a5e0; Map tip included. Revision 11: overview truth + Map hub crowding.
   # Suite resource still pinned to PyPI 0.1.47 for daily :8801 dogfood.
-  revision 10
+  revision 11
   license "Apache-2.0"
 
   depends_on "python@3.11"
