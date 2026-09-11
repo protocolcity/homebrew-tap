@@ -18,10 +18,10 @@
 #   - Overview MC Spec / inventory docs are unaffected by this pin.
 #
 # Version face "0.1.50" is the Cellar face for this Map+Overview V1 drop; it is
-# NOT a PyPI 0.1.50 cut (no twine to PyPI). Revision 7 = post-scrub MC full
-# glass tip @ 26ee883d (BluePrint #44 MC full glass + #45 scrub; not the bare
-# 5573f298); Map tip included from the same archive. Suite resource still
-# pinned to PyPI 0.1.47 (HARD HOLD, :8801 feel).
+# NOT a PyPI 0.1.50 cut (no twine to PyPI). Revision 8 = post-#46 MC DoD
+# must-fix tip @ cc67afd (hide empty builders + [hidden] shells); Map tip
+# included from the same archive. Suite resource still pinned to PyPI 0.1.47
+# (HARD HOLD, :8801 feel).
 #
 # Engines: protocolcity-worklane 0.1.7 + protocolcity-workforce 0.1.7.
 #
@@ -40,14 +40,13 @@ class Blueprint < Formula
 
   desc "BluePrint suite — setup a workspace, serve Map · Desk · Agents"
   homepage "https://github.com/protocolcity/BluePrint"
-  url "https://github.com/protocolcity/BluePrint/archive/26ee883d71eb3c62a2b8f4cd35f3117451c937b6.tar.gz"
-  sha256 "f2e5ffc95b030d3c3c2a2f9085aa6b51b0974bcedae8bab50ebbcbc668a9906b"
+  url "https://github.com/protocolcity/BluePrint/archive/cc67afd36d351fac6aec88058c70e25d556c2061.tar.gz"
+  sha256 "08f55436d0d771d0a73e6640ec6bfc383ab2796cb40ce0f0668eb6347f0b2725"
   version "0.1.50"
-  # BluePrint #44 MC full glass + #45 scrub @ 26ee883d (post-scrub tip, not
-  # bare 5573f298); Map tip included. Revision 7: Overview MC full glass +
-  # scrub polish only.
+  # BluePrint #46 DoD must-fix (hide empty builders + [hidden] shells) @
+  # cc67afd; Map tip included. Revision 8: Overview MC DoD must-fix tip only.
   # Suite resource still pinned to PyPI 0.1.47 for daily :8801 dogfood.
-  revision 7
+  revision 8
   license "Apache-2.0"
 
   depends_on "python@3.11"
