@@ -4,33 +4,24 @@
 # Formula for protocolcity/homebrew-tap.
 #
 # Sole formula: blueprint (product face = BluePrint suite).
-# Dual-source (Path B — three lanes):
-#   - Primary (url/sha256): protocolcity/BluePrint tip archive — Source of Truth
-#     for BOTH Map V1 (map/v1/ tree) AND Overview V1 (overview/v1/ tree).
-#       * `blueprint-map` serves Map V1 on :8802.
-#       * `blueprint-overview` serves Overview V1 Mission Control on :8803.
-#     BluePrint tip has NO pyproject.toml / setup.py — planted as file trees
-#     into libexec, not pip-installed.
-#   - Resource "suite": PyPI protocolcity_blueprint 0.1.47 — HARD HOLD pin for
-#     daily dogfood of the Map/desk feel through `blueprint serve` on :8801.
-#     Suite CLI (setup/serve/service) comes from this PyPI cut until the suite
-#     BFF mounts V1 endpoints. PyPI is NOT the Map/Overview SoT.
-#   - Overview MC Spec / inventory docs are unaffected by this pin.
 #
-# Version face "0.1.50" is the Cellar face for this Map+Overview V1 drop; it is
-# NOT a PyPI 0.1.50 cut (no twine to PyPI). Revision 12 = post-#54+#55 tip
-# @ 4cc69b3e (Phase-B projectors + Jobs tile cap + Agents display +
-# LaunchAgent --binder caveat); Map tip included from the same archive.
-# Suite resource still pinned to PyPI 0.1.47 (HARD HOLD, :8801 feel).
+# BLOCKED on PyPI protocolcity-blueprint 0.1.50 sdist (pc-1468 / BluePrint #145,
+# tap #17 / pc-1518). Do not merge until that sdist exists. After twine:
+#   1. Set url/sha256 to the published cut tip archive (not the stale Path B
+#      archive, and not an uncut public tip).
+#   2. Set resource "suite" url/sha256 to the PyPI 0.1.50 sdist.
 #
-# Engines: protocolcity-worklane 0.1.7 + protocolcity-workforce 0.1.7.
+# Pins (this PR):
+#   - suite / Cellar face: 0.1.50 (URL/sha filled after twine)
+#   - engines: protocolcity-worklane==0.1.9 + protocolcity-workforce==0.1.9
+#
+# post_install: `blueprint upgrade --quiet` (best-effort).
+# Caveats: single port :8803 only.
 #
 # Install:
 #   brew install protocolcity/tap/blueprint
 #   blueprint setup
-#   blueprint serve --root <your-workspace>       # daily dogfood on :8801
-#   blueprint-map --binder <dir> --port 8802      # Map V1 SoT on :8802
-#   blueprint-overview --binder <dir> --port 8803 # Overview V1 MC on :8803
+#   blueprint serve --root <your-workspace>    # :8803
 #
 # Remove:
 #   blueprint uninstall --app
@@ -40,129 +31,71 @@ class Blueprint < Formula
 
   desc "BluePrint suite — setup a workspace, serve Map · Desk · Agents"
   homepage "https://github.com/protocolcity/BluePrint"
-  url "https://github.com/protocolcity/BluePrint/archive/4cc69b3e13c2aafc3ef320b0fd76ef9c3b449927.tar.gz"
-  sha256 "f156990a45f5ec189dae7096d7094280a040a39400b5a51a5f02ed88e459a252"
+  # Formula SoT = cut tip archive after twine of PyPI 0.1.50. Placeholder on
+  # purpose: Security Advisor LOCK until sdist exists. Do not substitute an
+  # uncut public tip.
+  url "https://github.com/protocolcity/BluePrint/archive/CUT_SHA_AFTER_TWINE.tar.gz"
+  sha256 "0000000000000000000000000000000000000000000000000000000000000000"
   version "0.1.50"
-  # BluePrint #54 Phase-B + #55 Jobs cap / display / LaunchAgent --binder
-  # @ 4cc69b3e; Map tip included. Revision 12: overview Agents/Jobs honesty.
-  # Suite resource still pinned to PyPI 0.1.47 for daily :8801 dogfood.
-  revision 12
   license "Apache-2.0"
 
   depends_on "python@3.11"
 
-  # Suite CLI pinned to PyPI 0.1.47 — HARD HOLD for daily dogfood of Map/desk
-  # feel through `blueprint serve` on :8801. NOT the Map/Overview SoT (V1 SoT
-  # is the BluePrint tip planted below and served by `blueprint-map` on :8802
-  # and `blueprint-overview` on :8803).
-  # Overview MC Spec / inventory docs are unaffected by this pin.
+  # PyPI suite pin 0.1.50 — URL/sha filled after twine. Latest published
+  # protocolcity-blueprint on the index at PR open is 0.1.49.
   resource "suite" do
-    url "https://files.pythonhosted.org/packages/e6/84/2a2729075e82439831d6933b720899fee3508b7b5e33977db01aa6b1ffd6/protocolcity_blueprint-0.1.47.tar.gz"
-    sha256 "aeb33f8e3406c48701558d758b33f40a3d34d7c14e8eccd1a3252b05fc42b307"
+    url "https://files.pythonhosted.org/packages/source/p/protocolcity-blueprint/protocolcity_blueprint-0.1.50.tar.gz"
+    sha256 "0000000000000000000000000000000000000000000000000000000000000000"
   end
 
   def install
     venv = virtualenv_create(libexec, "python3.11")
 
-    # Suite CLI from PyPI 0.1.47 resource (pinned for daily :8801 dogfood).
-    # BluePrint tip has no packaging metadata, so we do NOT pip_install the
-    # buildpath.
+    # Suite CLI + surfaces from the PyPI 0.1.50 pin (same cut as the tip
+    # archive SoT once twine lands).
     venv.pip_install_and_link resource("suite")
 
     system libexec/"bin/python", "-m", "pip", "install",
-           "protocolcity-worklane==0.1.7",
-           "protocolcity-workforce==0.1.7"
+           "protocolcity-worklane==0.1.9",
+           "protocolcity-workforce==0.1.9"
     system libexec/"bin/python", "-m", "pip", "uninstall", "-y", "watchfiles"
     # Drop legacy console-script name if an older wheel still shipped it.
     rm_f bin/"protocolcity"
-
-    # Plant Map V1 tree from BluePrint tip (SoT). Served on :8802.
-    (libexec/"map/v1").mkpath
-    cp_r "#{buildpath}/map/v1/.", libexec/"map/v1"
-
-    # Plant Overview V1 tree from BluePrint tip (SoT). Served on :8803.
-    (libexec/"overview/v1").mkpath
-    cp_r "#{buildpath}/overview/v1/.", libexec/"overview/v1"
-
-    python = Formula["python@3.11"].opt_bin/"python3.11"
-
-    # Wrapper: `blueprint-map --binder DIR --port 8802`.
-    (bin/"blueprint-map").write <<~SH
-      #!/bin/bash
-      exec "#{python}" "#{libexec}/map/v1/serve.py" "$@"
-    SH
-    chmod 0755, bin/"blueprint-map"
-
-    # Wrapper: `blueprint-overview` (default port 8803 from serve.py).
-    (bin/"blueprint-overview").write <<~SH
-      #!/bin/bash
-      exec "#{python}" "#{libexec}/overview/v1/serve.py" "$@"
-    SH
-    chmod 0755, bin/"blueprint-overview"
   end
 
-  # Best-effort stop of suite/engines so brew upgrade does not leave
-  # an orphan process serving a deleted Cellar path (blank 404 on all routes).
+  # Best-effort: migrate a prior three-lane Cellar install to the single
+  # :8803 app. No workspace is known at brew time; failures are ignored.
   def post_install
-    system bin/"blueprint", "stop", "--quiet"
+    system bin/"blueprint", "upgrade", "--quiet"
   rescue
     nil
   end
 
   test do
-    assert_predicate libexec/"map/v1/serve.py", :exist?
-    assert_predicate libexec/"overview/v1/serve.py", :exist?
-    help = `#{bin}/blueprint-map --help 2>&1`
-    assert_match(/binder|serve/i, help)
-    overview_help = `#{bin}/blueprint-overview --help 2>&1`
-    assert_match(/port|serve|overview/i, overview_help)
     assert_match "setup", shell_output("#{bin}/blueprint setup --help")
-    assert_match "service", shell_output("#{bin}/blueprint service --help")
+    upgrade_help = `#{bin}/blueprint upgrade --help 2>&1`
+    assert_match(/upgrade/i, upgrade_help)
     refute_predicate bin/"protocolcity", :exist?
     system libexec/"bin/python", "-c", "import worklane.server, workforce"
   end
 
   def caveats
     <<~EOS
-      BluePrint suite installed (Path B: three-lane Map+Overview V1 from
-      protocolcity/BluePrint tip; suite CLI held at PyPI 0.1.47).
+      BluePrint suite 0.1.50 is installed (engines 0.1.9). One origin only:
 
-      Three lanes:
+        :8803  blueprint serve --root <your-workspace>
 
-        :8801  blueprint serve         — suite CLI from PyPI 0.1.47 (daily HOLD)
-        :8802  blueprint-map           — Map V1 from BluePrint tip
-        :8803  blueprint-overview      — Overview V1 Mission Control from tip
-
-      Daily dogfood — suite CLI from PyPI 0.1.47 on :8801:
+      Next — create or adopt a workspace:
 
         blueprint setup
-        blueprint serve --root <your-workspace>          # :8801
-
-      Map V1 (SoT = protocolcity/BluePrint tip) — served by blueprint-map
-      on :8802:
-
-        blueprint-map --binder <your-binder-dir> --port 8802
-
-      Overview V1 Mission Control (SoT = protocolcity/BluePrint tip) — served
-      by blueprint-overview on :8803:
-
-        blueprint-overview --binder <your-binder-dir> --port 8803
-
-      Phase-B Agents/Jobs projectors need --binder (WorkForce roster +
-      WorkLane stores under the binder). Without it, Overview still boots
-      but Agents/Jobs stay honest-empty. Match Map's LaunchAgent shape.
-
-      Suite CLI is pinned to PyPI 0.1.47 until the suite BFF mounts V1
-      endpoints. No suite BFF mount yet. Overview MC Spec / inventory docs
-      are unaffected.
+        blueprint serve --root <your-workspace>
 
       Keep running after you close the terminal (macOS login LaunchAgent):
 
         blueprint service install --root <your-workspace>
 
-      After brew upgrade/install, post_install runs `blueprint stop`, which
-      unloads the suite (and login agent) so a deleted Cellar path is not
-      kept alive. Restore always-on:
+      After brew upgrade/install, post_install runs `blueprint upgrade --quiet`.
+      Restore always-on:
 
         blueprint service start
         # if you never installed the agent:
