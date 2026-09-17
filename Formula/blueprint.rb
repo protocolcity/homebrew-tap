@@ -40,7 +40,7 @@ class Blueprint < Formula
 
   # PyPI suite pin 0.1.50 — sdist from cut receipt / PyPI JSON.
   resource "suite" do
-    url "https://files.pythonhosted.org/packages/7d/7d/f6577d5b44daafd4e71de0d9da896517c70e0db0d4c8f6cc415db3712614/protocolcity_blueprint-0.1.50.tar.gz"
+    url "https://files.pythonhosted.org/packages/source/p/protocolcity-blueprint/protocolcity_blueprint-0.1.50.tar.gz"
     sha256 "c0e4eb04d490ea9422e5a843a53fdddfe9919d2be28fdf7bd1c37269d9199d16"
   end
 
