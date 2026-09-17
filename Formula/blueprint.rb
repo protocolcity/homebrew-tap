@@ -5,14 +5,13 @@
 #
 # Sole formula: blueprint (product face = BluePrint suite).
 #
-# BLOCKED on PyPI protocolcity-blueprint 0.1.50 sdist (pc-1468 / BluePrint #145,
-# tap #17 / pc-1518). Do not merge until that sdist exists. After twine:
-#   1. Set url/sha256 to the published cut tip archive (not the stale Path B
-#      archive, and not an uncut public tip).
-#   2. Set resource "suite" url/sha256 to the PyPI 0.1.50 sdist.
+# PyPI protocolcity-blueprint 0.1.50 sdist filled from cut receipt
+# (pc-1468 / BluePrint #145, tap #17 / pc-1518). Still DRAFT — do not merge
+# until Security Advisor clear + Delivery ready.
 #
 # Pins (this PR):
-#   - suite / Cellar face: 0.1.50 (URL/sha filled after twine)
+#   - suite / Cellar face: 0.1.50 (PyPI sdist url/sha filled)
+#   - tip SoT: BluePrint archive @ 7e9574445f98ba4027b0089027010d4c6b0240c7
 #   - engines: protocolcity-worklane==0.1.9 + protocolcity-workforce==0.1.9
 #
 # post_install: `blueprint upgrade --quiet` (best-effort).
@@ -31,28 +30,24 @@ class Blueprint < Formula
 
   desc "BluePrint suite — setup a workspace, serve Map · Desk · Agents"
   homepage "https://github.com/protocolcity/BluePrint"
-  # Formula SoT = cut tip archive after twine of PyPI 0.1.50. Placeholder on
-  # purpose: Security Advisor LOCK until sdist exists. Do not substitute an
-  # uncut public tip.
-  url "https://github.com/protocolcity/BluePrint/archive/CUT_SHA_AFTER_TWINE.tar.gz"
-  sha256 "0000000000000000000000000000000000000000000000000000000000000000"
+  # Formula SoT = cut tip archive for PyPI 0.1.50 (BluePrint #145 / cut tip).
+  url "https://github.com/protocolcity/BluePrint/archive/7e9574445f98ba4027b0089027010d4c6b0240c7.tar.gz"
+  sha256 "df6d79b88d8d6567186e6081511ade01780609d81b2df771ad18480e9eebc9a6"
   version "0.1.50"
   license "Apache-2.0"
 
   depends_on "python@3.11"
 
-  # PyPI suite pin 0.1.50 — URL/sha filled after twine. Latest published
-  # protocolcity-blueprint on the index at PR open is 0.1.49.
+  # PyPI suite pin 0.1.50 — sdist from cut receipt / PyPI JSON.
   resource "suite" do
-    url "https://files.pythonhosted.org/packages/source/p/protocolcity-blueprint/protocolcity_blueprint-0.1.50.tar.gz"
-    sha256 "0000000000000000000000000000000000000000000000000000000000000000"
+    url "https://files.pythonhosted.org/packages/7d/7d/f6577d5b44daafd4e71de0d9da896517c70e0db0d4c8f6cc415db3712614/protocolcity_blueprint-0.1.50.tar.gz"
+    sha256 "c0e4eb04d490ea9422e5a843a53fdddfe9919d2be28fdf7bd1c37269d9199d16"
   end
 
   def install
     venv = virtualenv_create(libexec, "python3.11")
 
-    # Suite CLI + surfaces from the PyPI 0.1.50 pin (same cut as the tip
-    # archive SoT once twine lands).
+    # Suite CLI + surfaces from the PyPI 0.1.50 pin (same cut as tip SoT).
     venv.pip_install_and_link resource("suite")
 
     system libexec/"bin/python", "-m", "pip", "install",
