@@ -12,6 +12,8 @@ blueprint serve --root ~/my-workspace --with-engines
 # → http://127.0.0.1:8801/
 ```
 
+After `brew upgrade`, post_install runs `blueprint upgrade --root <workspace>` only when a login LaunchAgent or `~/.protocolcity/service.json` records that workspace. If none is found, upgrade is skipped — run `blueprint upgrade --root <your-workspace>` yourself. Do not omit `--root`.
+
 That installs the **BluePrint** CLI and pulls WorkLane + WorkForce engines from
 [PyPI](https://pypi.org/project/protocolcity/). You do **not** need three
 `brew install` commands, and you do **not** need the product GitHub repos
